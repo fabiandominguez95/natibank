@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#27DF96" id="themeColor">
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>natibank</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="fonts/ueno-Regular.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/ueno-Bold.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<!-- iconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.6 10.6 0 0112 5c6.4 0 10 7 10 7a17 17 0 01-3.2 4M6.5 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7c1.7 0 3.2-.4 4.5-1"/><path d="M9.9 9.9a3 3 0 004.2 4.2"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 1112 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/><path d="M10 20a2 2 0 004 0"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.7l7.4-4.2M8.3 13.3l7.4 4.2"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol>
+    <symbol id="i-pizza" viewBox="0 0 24 24"><path d="M3.5 7C9 3.5 15 3.5 20.5 7L12 21z"/><circle cx="9.7" cy="9.3" r=".9"/><circle cx="14.2" cy="10.4" r=".9"/><circle cx="12" cy="14.5" r=".9"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 7a3 3 0 006 0zM19 7l-3 7a3 3 0 006 0z"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 11h16v10H4zM3 7h18v4H3zM12 7v14"/><path d="M12 7C10.5 3 6.5 3.5 7.5 6.2 8 7 10 7 12 7zM12 7c1.500-4 5.500-3.500 4.500-.8C16 7 14 7 12 7z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1z" fill="currentColor"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h3M20 17v4"/></symbol>
+    <symbol id="i-prod" viewBox="0 0 24 24"><path d="M10 3.500l5 6H5z" /><rect x="4" y="13.500" width="7" height="7" rx="2.500"/><path d="M17 14v6M14 17h6"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.500 9.500a2.600 2.600 0 015 .8c0 1.800-2.500 2.200-2.500 3.700M12 17.200v.01"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.200 7-11.500A7 7 0 005 9.500C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></symbol>
+    <symbol id="i-finger" viewBox="0 0 24 24"><path d="M12 4a7 7 0 00-7 7v2M12 8a3 3 0 00-3 3v4a6 6 0 003 5M12 12v3a9 9 0 001.500 5M19 11a7 7 0 00-2-4.900M16 11v2.500a11 11 0 001 4"/></symbol>
+  </defs>
+</svg>
+
+<main id="app">
+
+  <!-- 1 · 2 de cada 3 -->
+  <section class="screen splash active" id="splash1">
+    <div class="story"><i class="on"></i><i></i></div>
+    <div class="sp-center"><img class="sp-block" src="assets/splash-block.png" alt="2 de cada 3 michis usan natibank"></div>
+    <div class="tap-hint">tocá para seguir</div>
+  </section>
+
+  <!-- 2 · logo -->
+  <section class="screen splash" id="splash2">
+    <div class="story"><i class="on"></i><i class="on"></i></div>
+    <img class="sp-logo" src="assets/natibank-white.png" alt="natibank">
+    <div class="tap-hint">tocá para seguir</div>
+  </section>
+
+  <!-- 3 · login -->
+  <section class="screen" id="login">
+    <div class="lg-top">
+      <span class="lg-ver">v30.0.0</span>
+      <div class="lg-icon"><img src="assets/natibank-white.png" alt="natibank"></div>
+    </div>
+    <div class="lg-body">
+      <h1 class="lg-hola"><span id="hola">¡Hola, Invitado!</span><span class="plus1" id="plus1Login" hidden>+1</span></h1>
+      <span class="lnk">Cambiar perfil</span>
+      <div class="lg-label">Contraseña</div>
+      <div class="lg-field"><span>••••••••</span><svg class="ico"><use href="#i-eyeoff"/></svg></div>
+      <span class="lnk" style="font-size:14px">Recuperar contraseña</span>
+      <div class="lg-bottom">
+        <button class="btn btn-dark" id="btnLogin">Iniciar sesión</button>
+        <button class="btn btn-line" id="btnFace"><svg class="ico" style="width:20px"><use href="#i-finger"/></svg>Iniciar sesión con Face ID</button>
+        <div class="lg-foot">Conectado con <b>natiID</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · home -->
+  <section class="screen" id="home">
+    <div class="h-scroll">
+      <div class="h-top">
+        <div class="chip"><span class="av" id="initials">N</span><svg class="ico"><use href="#i-chev"/></svg></div>
+        <div class="h-right">
+          <div class="chip" style="padding-right:18px"><span class="av" style="background:#E9E4FB;font-size:21px">🐈‍⬛</span>michi</div>
+          <div class="bell"><svg class="ico"><use href="#i-bell"/></svg></div>
+        </div>
+      </div>
+
+      <div class="card bal">
+        <div class="bal-row"><span>CA Nº 30-30-30</span><svg class="ico"><use href="#i-eye"/></svg></div>
+        <div class="bal-amt">-30.000 Gs.</div>
+        <div class="bal-sub">Saldo disponible</div>
+        <div class="bal-btns"><div class="go">Ir a la cuenta</div><div class="sh"><svg class="ico"><use href="#i-share"/></svg></div></div>
+      </div>
+
+      <div class="welcome">
+        <div class="em">🎂</div>
+        <div>
+          <h2>¡Bienvenido a <span class="pill"><img src="assets/natibank-green.png" alt="natibank"></span>, el banco del cumple 30 de Nati!</h2>
+          <p>Tocá los atajos de acá abajo, de a uno y en orden, para enterarte de todo.</p>
+        </div>
+      </div>
+
+      <div class="card atajos">
+        <div class="at-head"><div class="t"><svg class="ico"><use href="#i-grid"/></svg>Atajos</div><div class="st" id="stepTxt">Paso 1 de 5</div></div>
+        <div class="at-row">
+          <button class="sc" data-i="0"><span class="ci"><svg class="ico"><use href="#i-receipt"/></svg><span class="ck"><svg class="ico"><use href="#i-check"/></svg></span></span><span class="tag">Nuevo</span><span>Contexto</span></button>
+          <button class="sc" data-i="1"><span class="ci"><svg class="ico"><use href="#i-pizza"/></svg><span class="ck"><svg class="ico"><use href="#i-check"/></svg></span></span><span class="tag">Nuevo</span><span>Pizzas</span></button>
+          <button class="sc" data-i="2"><span class="ci"><svg class="ico"><use href="#i-trend"/></svg><span class="ck"><svg class="ico"><use href="#i-check"/></svg></span></span><span class="tag">Nuevo</span><span>Invertir</span></button>
+          <button class="sc" data-i="3"><span class="ci"><svg class="ico"><use href="#i-scale"/></svg><span class="ck"><svg class="ico"><use href="#i-check"/></svg></span></span><span class="tag">Nuevo</span><span>Juicio</span></button>
+          <button class="sc" data-i="4"><span class="ci"><svg class="ico"><use href="#i-gift"/></svg><span class="ck"><svg class="ico"><use href="#i-check"/></svg></span></span><span class="tag">Nuevo</span><span>Natcho</span></button>
+        </div>
+        <div class="at-note">Se habilitan de a uno. No te me adelantes.</div>
+      </div>
+
+      <div class="sec-t">Finanzas</div>
+      <div class="card mov">
+        <div class="r"><div>Chopp de pilsen<small>Hoy</small></div><b>-12.000 Gs.</b></div>
+        <div class="r"><div>Globos verdes y blancos<small>Hoy</small></div><b>-8.000 Gs.</b></div>
+        <div class="r"><div>Pizzas pre hechas x20<small>Hoy</small></div><b>-10.000 Gs.</b></div>
+      </div>
+    </div>
+    <nav class="nav">
+      <div class="it on"><svg class="ico"><use href="#i-home"/></svg>Inicio</div>
+      <div class="it"><svg class="ico"><use href="#i-gift"/></svg>nati+</div>
+      <div class="qr"><svg class="ico"><use href="#i-qr"/></svg></div>
+      <div class="it"><svg class="ico"><use href="#i-prod"/></svg>Productos</div>
+      <div class="it"><svg class="ico"><use href="#i-help"/></svg>Ayuda</div>
+    </nav>
+  </section>
+
+  <!-- 5 · contexto -->
+  <section class="screen sub" id="s0">
+    <div class="sub-head"><button class="back" data-back aria-label="Volver"><svg class="ico"><use href="#i-back"/></svg></button><img class="hl" src="assets/natchis.png" alt="natchis"><span class="sp"></span></div>
+    <div class="scroll">
+      <h1 class="ctx-title">Te la meto sin pretexto</h1>
+      <div class="ctx-sub">(increíblemente, Nati propuso este título)</div>
+      <p class="ctx-p">Nati cumple 30 años y queremos hacerle su fiesta de 15's (x2)</p>
+      <p class="ctx-p2">Se celebrará el día sábado 14 de noviembre, a partir de las 19hs</p>
+      <div class="ctx-lbl">Lugar</div>
+      <a class="map map-first" href="https://maps.app.goo.gl/r3a6W5f9Kf9RWgBE7" target="_blank" rel="noopener">
+        <div class="im"><img src="assets/missing-cat.webp" alt="Edificio Sporterra"></div>
+        <div class="mt"><svg class="ico"><use href="#i-pin"/></svg>Edificio Sporterra</div>
+        <div class="ms">Ver en Google Maps</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 6 · pizzas -->
+  <section class="screen sub" id="s1">
+    <div class="sub-head"><button class="back" data-back aria-label="Volver"><svg class="ico"><use href="#i-back"/></svg></button><img class="hl" src="assets/natibank-green.png" alt="natibank"><span class="sp"></span></div>
+    <div class="scroll">
+      <h1 class="h1">Con tu regalo tenés hasta 40% de reintegro en pizzas</h1>
+      <div class="note">(ojo, dice "hasta", el reintegro es de 0%)</div>
+      <div class="pcards">
+        <div class="pcard"><div class="pi gif"><img src="assets/cat-pizza.gif" alt=""></div><div class="pt">Habrá pizzas a la parrilla</div></div>
+        <div class="pcard"><div class="pi"><img src="assets/cat-beer.webp" alt="" style="aspect-ratio:4/5;object-position:60% 55%"></div><div class="pt">Chopp de pilsen</div></div>
+        <div class="pcard"><div class="pi"><img src="assets/cat-cocktails.webp" alt="" style="aspect-ratio:1/1"></div><div class="pt">Barra de tragos <b>ILIMITADA</b> de 21 a 23hs</div></div>
+        <div class="pcard"><div class="pi"><img src="assets/cat-glitter.webp" alt="" style="aspect-ratio:4/5;object-position:50% 30%"></div><div class="pt">Glitter bar</div></div>
+        <div class="pcard"><div class="pi"><img src="assets/cat-tattoo.webp" alt="" style="aspect-ratio:4/5;object-position:50% 50%"></div><div class="pt">Tatuajes temporales temáticos de natiworld</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · invertir -->
+  <section class="screen sub" id="s2">
+    <div class="sub-head"><button class="back" data-back aria-label="Volver"><svg class="ico"><use href="#i-back"/></svg></button><img class="hl" src="assets/natibank-green.png" alt="natibank"><span class="sp"></span></div>
+    <div class="scroll">
+      <div class="inv-top">
+        <div class="inv-photo"><img src="assets/nati-barbie.webp" alt="Nati"></div>
+        <p class="inv-txt"><b>La Nati Barbie oscurita,</b> que también es fisioterapeuta, kinesióloga, estudiante de moda, cantante de ducha, estudiante de gastronomía, tenista fracasada y mamá de 2 michis y una criatura de 30 años... ¡Ahora quiere ser pastelera! Así que está ahorrando para comprarse una batidora</p>
+        <div class="clr"></div>
+      </div>
+      <div class="meme"><img src="assets/meme-batidora.webp" alt=""></div>
+      <div class="donate"><img src="assets/kid-dog.webp" alt=""><p>La mitad de lo recaudado se donará a una fundación para niños y una fundación de mascotas.</p></div>
+    </div>
+  </section>
+
+  <!-- 8 · juicio -->
+  <section class="screen sub" id="s3">
+    <div class="sub-head"><button class="back" data-back aria-label="Volver"><svg class="ico"><use href="#i-back"/></svg></button><img class="hl" src="assets/natuti.png" alt="natuti"><span class="sp"></span></div>
+    <div class="scroll">
+      <h1 class="h1">¡Me encantaría poder compartir contigo!</h1>
+      <div class="j-plus" id="plus1Box" hidden><span class="big">+1</span><span>Tu invitación incluye un +1.<br>Podés venir acompañado/a.</span></div>
+
+      <div id="j-choose">
+        <div class="j-ask">Por favor confirmá asistencia:</div>
+        <div class="opts">
+          <div class="opt"><img src="assets/me-and-bro.webp" alt=""><button class="btn btn-brand rsvp-btn" data-v="yes">Voy</button></div>
+          <div class="opt"><img src="assets/lobo.webp" alt=""><button class="btn btn-line rsvp-btn" data-v="no">No puedo, soy terrible persona</button></div>
+        </div>
+        <p class="disc">Al clicar el botón de "no puedo" estás aceptando los términos de uso en los que pusimos que no te devolveremos tu dinero si quebramos.</p>
+      </div>
+
+      <div id="j-done" hidden>
+        <div class="j-done" id="j-yes" hidden>
+          <img src="assets/me-and-bro.webp" alt="">
+          <h2>¡Muchas gracias!</h2>
+          <p>Quedaste anotado/a. Seguí el paseo, falta un poco.</p>
+          <div class="p1name" id="p1Wrap" hidden>
+            <label for="p1">¿Quién es tu +1? (opcional)</label>
+            <div class="row"><input id="p1" type="text" maxlength="60" placeholder="Nombre de tu +1" autocomplete="off"><button id="p1Save">Guardar</button></div>
+          </div>
+          <button class="btn btn-dark" data-back>Seguir</button>
+        </div>
+        <div class="j-done" id="j-no" hidden>
+          <img src="assets/lobo.webp" alt="">
+          <h2>Anotado :(</h2>
+          <p>Igual seguí el paseo, mirá lo que te perdés.</p>
+          <button class="btn btn-dark" data-back>Seguir</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · natcho -->
+  <section class="screen sub" id="s4">
+    <div class="sub-head"><button class="back" data-back aria-label="Volver"><svg class="ico"><use href="#i-back"/></svg></button><img class="hl" src="assets/natcho.png" alt="NATCHO"><span class="sp"></span></div>
+    <div class="scroll" style="padding-bottom:0">
+      <div class="nat-top">
+        <h1 class="h1" style="font-size:28px">Antes de irte, queremos comentarte sobre la Fundación NATCHO</h1>
+        <p class="nat-sub">Núcleo de Amigos Trabajando en Cocina, Homenaje y Ornamentación.</p>
+      </div>
+      <div class="sky">
+        <h3>Vacantes</h3>
+        <ul class="vac">
+          <li><i>🍕</i><span>Alguien que pueda ir tirando a la parrilla unas 20 pizzas pre hechas, y que no se quemen, nada más.</span></li>
+          <li><i>🎈</i><span>Alguien(es) que quieran venir una horita antes a "decorar" (lit. es poner un par de globos y algún papelito y ya, temática verde y blanco, porque Nati es de Rubio Ñu, claramente).</span></li>
+        </ul>
+        <div class="nat-cta">Me anoto, soy un excelente ser humano</div>
+        <div class="nat-btns">
+          <button class="btn btn-blue role-btn" data-r="parrilla">Parrillere de pizzes</button>
+          <button class="btn btn-blue role-btn" data-r="globos">Sopladore de globes</button>
+        </div>
+        <div class="nat-note" id="natNote" hidden>Las vacantes son solo para los que van.</div>
+        <button class="nat-no" id="roleNone">No gracias, no me gusta pensar en los demás</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · final -->
+  <section class="screen" id="final">
+    <div class="scroll">
+      <img class="f-logo" src="assets/natibank-white.png" alt="natibank">
+      <h1 class="f-h only-yes">Muchas gracias</h1>
+      <h1 class="f-h only-no">Nos vemos en el juicio</h1>
+      <p class="f-s only-yes">Te esperamos el sábado 14 de noviembre, desde las 19hs.</p>
+      <p class="f-s only-no">Por lesión de confianza.</p>
+
+      <div class="ad">
+        <span class="tagx">Anuncio</span>
+        <div class="art"><img src="assets/natiblack.png" alt=""></div>
+        <div class="tx"><h4>Probá la nueva natiblack</h4><p>No tiene fondos pero van a pensar que tenés mucha plata.</p></div>
+      </div>
+
+      <div class="f-lbl">Lugar (te lo prometí)</div>
+      <a class="map" href="https://maps.app.goo.gl/r3a6W5f9Kf9RWgBE7" target="_blank" rel="noopener">
+        <div class="im"><img src="assets/missing-cat.webp" alt="Edificio Sporterra"></div>
+        <div class="mt"><svg class="ico"><use href="#i-pin"/></svg>Edificio Sporterra</div>
+        <div class="ms">Ver en Google Maps</div>
+      </a>
+
+      <div class="f-wolf only-no"><img src="assets/lobo.webp" alt=""><p>Y bueno, un gusto conocerte :'(</p></div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="modal" id="m1"><div class="sheet">
+    <h3>Qué ansiedad</h3>
+    <p>Mirá todo primero, prometo volver a poner ubi al final del paseo por la app.</p>
+    <div class="btns">
+      <button class="btn btn-dark" id="m1ok">ok ta bien</button>
+      <button class="btn btn-line" id="m1no">igual quiero ver, tengo problemas mentales</button>
+    </div>
+  </div></div>
+
+  <div class="modal" id="m2"><div class="sheet">
+    <img src="assets/cat-black.webp" alt="">
+    <div class="btns"><button class="btn btn-dark" id="m2ok">ok</button></div>
+  </div></div>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
