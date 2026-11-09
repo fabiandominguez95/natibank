@@ -56,8 +56,6 @@
     var p = $('#pw'), show = p.type === 'password'; p.type = show ? 'text' : 'password';
     $('use', this).setAttribute('href', show ? '#i-eye' : '#i-eyeoff');
   });
-  $('#recover').addEventListener('click', function () { $('#m3').classList.add('on'); });
-  $('#m3ok').addEventListener('click', function () { $('#m3').classList.remove('on'); });
 
   /* ---------- invitado ---------- */
   function initials(n) {
