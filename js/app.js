@@ -51,7 +51,13 @@
   // login
   function enter() { if (st.finished) { renderFinal(); show('final', 'fade'); } else show('home', 'fade'); }
   $('#btnLogin').addEventListener('click', enter);
-  $('#btnFace').addEventListener('click', enter);
+  $('#pw').addEventListener('keydown', function (e) { if (e.key === 'Enter') enter(); });
+  $('#pwEye').addEventListener('click', function () {
+    var p = $('#pw'), show = p.type === 'password'; p.type = show ? 'text' : 'password';
+    $('use', this).setAttribute('href', show ? '#i-eye' : '#i-eyeoff');
+  });
+  $('#recover').addEventListener('click', function () { $('#m3').classList.add('on'); });
+  $('#m3ok').addEventListener('click', function () { $('#m3').classList.remove('on'); });
 
   /* ---------- invitado ---------- */
   function initials(n) {
@@ -108,14 +114,29 @@
     sx = null;
   });
 
-  /* ---------- ubicación (primer clic = chiste) ---------- */
-  $('.map-first').addEventListener('click', function (e) {
-    if (!st.ubiTried) { e.preventDefault(); $('#m1').classList.add('on'); }
-  });
-  function ubiDone() { st.ubiTried = true; save(); }
-  $('#m1ok').addEventListener('click', function () { ubiDone(); $('#m1').classList.remove('on'); });
-  $('#m1no').addEventListener('click', function () { ubiDone(); $('#m1').classList.remove('on'); $('#m2').classList.add('on'); });
+  /* ---------- ubicación: nunca abre el mapa en "contexto" ---------- */
+  $('.map-first').addEventListener('click', function () { $('#m1').classList.add('on'); });
+  $('#m1ok').addEventListener('click', function () { $('#m1').classList.remove('on'); });
+  $('#m1no').addEventListener('click', function () { $('#m1').classList.remove('on'); $('#m2').classList.add('on'); });
   $('#m2ok').addEventListener('click', function () { $('#m2').classList.remove('on'); });
+
+  /* ---------- copiar datos ---------- */
+  function copyText(t) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
+    return new Promise(function (res, rej) {
+      var ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy') ? res() : rej(); } catch (e) { rej(e); } ta.remove();
+    });
+  }
+  $$('.cp').forEach(function (b) {
+    b.addEventListener('click', function () {
+      copyText(b.dataset.copy).then(function () {
+        var s = $('span', b), old = 'Copiar'; b.classList.add('ok'); s.textContent = '¡Copiado!';
+        setTimeout(function () { b.classList.remove('ok'); s.textContent = old; }, 1400);
+      }).catch(function () { toast('No pude copiar: ' + b.dataset.copy); });
+    });
+  });
 
   /* ---------- juicio ---------- */
   var busy = false;
@@ -135,7 +156,9 @@
       $$('.rsvp-btn').forEach(function (x) { x.disabled = true; });
       NBAPI.setRsvp(NAME, b.dataset.v).then(function (g) {
         guest = Object.assign(guest, g, { name: guest.name });
-        st.done[3] = true; save(); renderGuest(); renderJuicio();
+        st.done[3] = true;
+        if (guest.rsvp === 'no') { st.done = [true, true, true, true, true]; st.finished = true; save(); renderGuest(); renderFinal(); show('final', 'fwd'); return; }
+        save(); renderGuest(); renderJuicio();
       }).catch(function () {
         toast('No pude guardar tu respuesta. Probá de nuevo.');
         $$('.rsvp-btn').forEach(function (x) { x.disabled = false; });
@@ -167,6 +190,8 @@
   $('#roleNone').addEventListener('click', function () { pickRole('none'); });
 
   /* ---------- final ---------- */
+  $('#fSalir').addEventListener('click', function () { show('splash1', 'fade'); });
+  $('#fInicio').addEventListener('click', function () { show('home', 'fade'); });
   function renderFinal() { document.documentElement.dataset.rsvp = guest.rsvp || 'yes'; }
 
   /* ---------- toast ---------- */
