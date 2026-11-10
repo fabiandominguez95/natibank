@@ -137,16 +137,28 @@
   });
 
   /* ---------- juicio ---------- */
-  var busy = false;
+  var busy = false, plusPick = null;
+  function plusReady() {
+    return !guest.plus_one || guest.plus_one_rsvp === 'no' || (guest.plus_one_rsvp === 'yes' && !!guest.plus_one_name);
+  }
+  function shake(el) { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); }
   function renderJuicio() {
     var a = guest.rsvp;
     $('#j-choose').hidden = !!a;
     $('#j-done').hidden = !a;
     $('#j-yes').hidden = a !== 'yes';
     $('#j-no').hidden = a !== 'no';
-    $('#p1Wrap').hidden = !(a === 'yes' && guest.plus_one);
-    $('#p1').value = guest.plus_one_name || '';
     $$('.rsvp-btn').forEach(function (b) { b.disabled = false; });
+    if (a === 'yes' && guest.plus_one) {
+      $('#plusQ').hidden = false;
+      var r = guest.plus_one_rsvp, ok = $('#pqOk');
+      var done = r === 'no' || (r === 'yes' && guest.plus_one_name);
+      $('#pqBtns').hidden = done || plusPick === 'yes';
+      $('#p1Wrap').hidden = done || !(plusPick === 'yes' || r === 'yes');
+      ok.hidden = !done;
+      if (done) ok.textContent = r === 'no' ? '✓ Anotado: tu +1 no viene' : '✓ Anotado: ' + guest.plus_one_name;
+      if (!done) $('#p1').value = guest.plus_one_name || '';
+    } else { $('#plusQ').hidden = true; }
   }
   $$('.rsvp-btn').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -154,8 +166,8 @@
       $$('.rsvp-btn').forEach(function (x) { x.disabled = true; });
       NBAPI.setRsvp(NAME, b.dataset.v).then(function (g) {
         guest = Object.assign(guest, g, { name: guest.name });
-        st.done[3] = true;
         if (guest.rsvp === 'no') { st.done = [true, true, true, true, true]; st.finished = true; save(); renderGuest(); renderFinal(); show('final', 'fwd'); return; }
+        if (plusReady()) st.done[3] = true;
         save(); renderGuest(); renderJuicio();
       }).catch(function () {
         toast('No pude guardar tu respuesta. Probá de nuevo.');
@@ -163,10 +175,28 @@
       }).then(function () { busy = false; });
     });
   });
+  $$('#pqBtns .btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (b.dataset.g === '1') { plusPick = 'yes'; renderJuicio(); setTimeout(function () { $('#p1').focus(); }, 50); return; }
+      NBAPI.setPlus(NAME, false, '').then(function (g) {
+        guest = Object.assign(guest, g, { name: guest.name }); plusPick = null; renderJuicio();
+      }).catch(function () { toast('No se pudo guardar. Probá de nuevo.'); });
+    });
+  });
   $('#p1Save').addEventListener('click', function () {
     var v = $('#p1').value.trim().slice(0, 60);
-    NBAPI.setPlusName(NAME, v).then(function () { guest.plus_one_name = v; toast('¡Anotado!'); })
-      .catch(function () { toast('No se pudo guardar. Probá de nuevo.'); });
+    if (!v) { shake($('#p1')); toast('Escribí el nombre de tu +1.'); return; }
+    NBAPI.setPlus(NAME, true, v).then(function (g) {
+      guest = Object.assign(guest, g, { name: guest.name }); plusPick = null; renderJuicio();
+    }).catch(function () { toast('No se pudo guardar. Probá de nuevo.'); });
+  });
+  $('#jSeguir').addEventListener('click', function () {
+    if (!plusReady()) {
+      shake($('#jSeguir'));
+      toast(plusPick === 'yes' || guest.plus_one_rsvp === 'yes' ? 'Tocá «Guardar» para seguir.' : 'Contanos si viene tu +1 para seguir.');
+      return;
+    }
+    st.done[3] = true; save(); goHome();
   });
 
   /* ---------- natcho ---------- */
@@ -201,7 +231,7 @@
 
   // precarga de imágenes
   window.addEventListener('load', function () {
-    ['natibank-green.png', 'natchis.png', 'natuti.png', 'natcho.png', 'missing-cat.webp', 'me-and-bro.webp', 'lobo.webp', 'cat-black.webp', 'cat-pizza.gif', 'cat-beer.webp', 'cat-cocktails.webp', 'cat-glitter.webp', 'cat-tattoo.webp', 'nati-barbie.webp', 'meme-batidora.webp', 'kid-dog.webp', 'natiblack.png']
+    ['natibank-green.png', 'natchis.png', 'natuti.png', 'natcho.png', 'missing-cat.webp', 'me-and-bro.webp', 'lobo.webp', 'cat-black.webp', 'cat-pizza.gif', 'cat-beer.webp', 'cat-cocktails.webp', 'cat-glitter.webp', 'cat-tattoo.webp', 'nati-barbie.webp', 'meme-batidora.webp', 'kids.webp', 'dogs.webp', 'rachel.webp', 'natiblack.png']
       .forEach(function (f) { (new Image()).src = 'assets/' + f; });
   });
 })();

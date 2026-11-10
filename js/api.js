@@ -23,7 +23,7 @@
   var LK = 'nb_local_guests_v1';
   function lget() { try { return JSON.parse(localStorage.getItem(LK)) || {}; } catch (e) { return {}; } }
   function lset(o) { try { localStorage.setItem(LK, JSON.stringify(o)); } catch (e) {} }
-  function blank(name, plus) { return { name: name, plus_one: !!plus, rsvp: null, plus_one_name: '', role: null, responded_at: null }; }
+  function blank(name, plus) { return { name: name, plus_one: !!plus, rsvp: null, plus_one_name: '', plus_one_rsvp: null, role: null, responded_at: null }; }
   function lupsert(name, patch, plusDefault) {
     var all = lget(), k = name.toLowerCase();
     var g = all[k] || blank(name, plusDefault);
@@ -47,6 +47,10 @@
     setPlusName: function (name, txt) {
       if (remote) return rpc('nb_plus_name', { p_name: name, p_text: txt });
       return Promise.resolve(lupsert(name, { plus_one_name: txt }, localPlus));
+    },
+    setPlus: function (name, going, txt) {
+      if (remote) return rpc('nb_plus', { p_name: name, p_going: !!going, p_text: txt || '' });
+      return Promise.resolve(lupsert(name, { plus_one_rsvp: going ? 'yes' : 'no', plus_one_name: going ? txt : '' }, localPlus));
     },
     setRole: function (name, role) {
       if (remote) return rpc('nb_role', { p_name: name, p_role: role });

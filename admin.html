@@ -51,12 +51,12 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return
 function load(){return NBAPI.adminList(pass).then(function(d){data=d;render();$('#login').hidden=true;$('#main').hidden=false;sessionStorage.setItem('nb_admin',pass);$('#localWarn').hidden=NBAPI.remote})}
 function render(){
   var yes=data.filter(function(g){return g.rsvp==='yes'}),no=data.filter(function(g){return g.rsvp==='no'}),none=data.filter(function(g){return !g.rsvp});
-  var plus=yes.filter(function(g){return g.plus_one}).length;
+  var plus=yes.filter(function(g){return g.plus_one&&g.plus_one_rsvp==='yes'}).length;
   var pa=data.filter(function(g){return g.role==='parrilla'&&g.rsvp==='yes'}),gl=data.filter(function(g){return g.role==='globos'&&g.rsvp==='yes'});
-  $('#stats').innerHTML=[['Van',yes.length],['Con +1 posible',plus],['Personas máx.',yes.length+plus],['No van',no.length],['Sin responder',none.length],['Parrilleres',pa.length],['Globos',gl.length]].map(function(x){return '<div class="st"><b>'+x[1]+'</b><span>'+x[0]+'</span></div>'}).join('');
+  $('#stats').innerHTML=[['Van',yes.length],['+1 confirmados',plus],['Personas en total',yes.length+plus],['No van',no.length],['Sin responder',none.length],['Parrilleres',pa.length],['Globos',gl.length]].map(function(x){return '<div class="st"><b>'+x[1]+'</b><span>'+x[0]+'</span></div>'}).join('');
   $('#rows').innerHTML=data.map(function(g){
     var r=g.rsvp==='yes'?'<span class="tag yes">Va</span>':g.rsvp==='no'?'<span class="tag no">No va</span>':'<span class="tag none">—</span>';
-    var p=g.plus_one?'<span class="tag p1">+1</span> '+esc(g.plus_one_name||''):'';
+    var p=!g.plus_one?'':g.plus_one_rsvp==='yes'?'<span class="tag p1">+1</span> '+esc(g.plus_one_name||''):g.plus_one_rsvp==='no'?'<span class="tag none">+1 no viene</span>':'<span class="tag p1">+1</span> <span class="sub" style="margin:0">sin confirmar</span>';
     var v=g.role==='parrilla'?'🍕 Parrillere':g.role==='globos'?'🎈 Globos':g.role==='none'?'<span class="sub" style="margin:0">no</span>':'';
     return '<tr><td><b>'+esc(g.name)+'</b></td><td>'+r+'</td><td>'+p+'</td><td>'+v+'</td><td style="white-space:nowrap"><button class="l" data-copy="'+esc(g.name)+'">Link</button> <button class="r" data-del="'+esc(g.name)+'">✕</button></td></tr>';
   }).join('')||'<tr><td colspan="5" class="sub">Todavía no hay invitados.</td></tr>';

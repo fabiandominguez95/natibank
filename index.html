@@ -65,8 +65,8 @@
       <span class="lnk">Cambiar perfil</span>
       <div class="lg-label">Contraseña</div>
       <div class="lg-field"><input id="pw" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Contraseña"><button id="pwEye" type="button" aria-label="Mostrar"><svg class="ico"><use href="#i-eyeoff"/></svg></button></div>
-      <div class="rec-row"><span class="lnk" style="font-size:14px;margin:0">Recuperar contraseña</span><span class="rec-j">(Quizá no funcione, recuperar cosas de nosotros no suele ser normal)</span></div>
       <p class="lg-claim">Escribí cualquier cosa, desviaron el presupuesto para este menú.</p>
+      <div class="rec-row"><span class="lnk" style="font-size:14px;margin:0">Recuperar contraseña</span><span class="rec-j">(Quizá no funcione, recuperar cosas de nosotros no suele ser normal)</span></div>
       <div class="lg-bottom">
         <button class="btn btn-dark" id="btnLogin">Iniciar sesión</button>
                 <div class="lg-foot">Conectado con <b>natiID</b></div>
@@ -185,15 +185,21 @@
         <div class="bank">
           <div class="bk"><div><small>Alias (C.I.)</small><b>4.529.656</b></div><button class="cp" data-copy="4529656"><svg class="ico"><use href="#i-copy"/></svg><span>Copiar</span></button></div>
           <div class="bk"><div><small>Banco</small><b>Itaú</b></div><button class="cp" data-copy="Itaú"><svg class="ico"><use href="#i-copy"/></svg><span>Copiar</span></button></div>
-          <div class="bk"><div><small>Titular</small><b>Fabián Domínguez <em>(mentira, Natalie Michel)</em></b></div><button class="cp" data-copy="Natalie Michel"><svg class="ico"><use href="#i-copy"/></svg><span>Copiar</span></button></div>
+          <div class="bk"><div><small>Titular</small><b>Natalie Michel</b></div><button class="cp" data-copy="Natalie Michel"><svg class="ico"><use href="#i-copy"/></svg><span>Copiar</span></button></div>
         </div>
       </div>
 
+      <div class="y-ademas">Y además...</div>
       <div class="help">
         <div class="help-em">💚🐶🐱👧👦</div>
         <h2>¡La mitad de lo recaudado se donará!</h2>
-        <img src="assets/kid-dog.webp" alt="">
-        <p>Una parte va a una fundación para niños y la otra a una fundación de mascotas. ¡Gracias por ayudar! 💚</p>
+        <div class="help-imgs"><img src="assets/kids.webp" alt=""><img src="assets/dogs.webp" alt=""></div>
+        <p>Una parte va a una fundación para niños y la otra a una fundación de mascotas.</p>
+      </div>
+
+      <div class="serio">
+        <p>Entendemos que la situación económica afecta a muchos y no esperamos regalos. Si ya tenías pensado hacerle uno a Nati, podés contribuir a la batidora que tanto desea; es totalmente opcional. Lo importante es celebrar su tercera década siendo enana.</p>
+        <img src="assets/rachel.webp" alt="">
       </div>
 
       <button class="btn btn-dark" data-back style="margin-top:18px">Volver al inicio</button>
@@ -220,12 +226,20 @@
         <div class="j-done" id="j-yes" hidden>
           <img src="assets/me-and-bro.webp" alt="">
           <h2>¡Muchas gracias!</h2>
-          <p>Quedaste anotado/a. Seguí el paseo, falta un poco.</p>
-          <div class="p1name" id="p1Wrap" hidden>
-            <label for="p1">¿Quién es tu +1? (opcional)</label>
-            <div class="row"><input id="p1" type="text" maxlength="60" placeholder="Nombre de tu +1" autocomplete="off"><button id="p1Save">Guardar</button></div>
+          <p>Quedaste anotado/a.</p>
+          <div class="plusq" id="plusQ" hidden>
+            <div class="pq-t"><span class="pq-badge">+1</span>¿Vendrá tu +1?</div>
+            <div class="pq-b" id="pqBtns">
+              <button class="btn btn-brand" data-g="1">Sí</button>
+              <button class="btn btn-line" data-g="0">No</button>
+            </div>
+            <div class="p1name" id="p1Wrap" hidden>
+              <label for="p1">Nombre de tu +1</label>
+              <div class="row"><input id="p1" type="text" maxlength="60" placeholder="Nombre y apellido" autocomplete="off"><button id="p1Save">Guardar</button></div>
+            </div>
+            <div class="pq-ok" id="pqOk" hidden></div>
           </div>
-          <button class="btn btn-dark" data-back>Seguir</button>
+          <button class="btn btn-dark" id="jSeguir">Seguir</button>
         </div>
         <div class="j-done" id="j-no" hidden>
           <img src="assets/lobo.webp" alt="">
