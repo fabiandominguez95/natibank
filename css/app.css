@@ -376,18 +376,18 @@ button.lnk{border:0;background:none;padding:0;font-family:inherit;align-self:fle
 .mov .r{padding:7px 0;font-size:13.5px}.mov .r small{font-size:10.5px;margin-top:0}
 
 #home{--ex:0}
-#home .bal{container-type:inline-size;display:block;margin-top:calc(8px + var(--ex)*.03px);padding:calc(12px + var(--ex)*.1px) 18px calc(12px + var(--ex)*.1px)}
+#home .bal{container-type:inline-size;display:block;margin-top:calc(8px + var(--ex)*.03px);padding:calc(12px + var(--ex)*.075px) 18px calc(12px + var(--ex)*.075px)}
 #home .bal-row{font-size:calc(12.5px + var(--ex)*.012px)}
-#home .bal-amt{font-size:min(calc(28px + var(--ex)*.12px),11.4cqw);margin-top:calc(4px + var(--ex)*.04px);white-space:nowrap}
+#home .bal-amt{font-size:min(calc(28px + var(--ex)*.06px),9.5cqw);margin-top:calc(4px + var(--ex)*.04px);white-space:nowrap}
 #home .bal-sub{font-size:calc(11px + var(--ex)*.012px);margin-top:calc(3px + var(--ex)*.01px)}
-#home .bal-btns{display:flex;gap:10px;margin-top:calc(8px + var(--ex)*.06px)}
-#home .bal-btns .go{height:calc(38px + var(--ex)*.09px);font-size:calc(13.5px + var(--ex)*.02px);padding:0 16px;flex:1;justify-content:center}
-#home .bal-btns .sh{width:calc(38px + var(--ex)*.09px);height:calc(38px + var(--ex)*.09px)}
-#home .welcome{margin-top:calc(8px + var(--ex)*.03px);padding:10px 14px;container-type:inline-size;display:block}
+#home .bal-btns{display:flex;gap:10px;margin-top:calc(8px + var(--ex)*.03px)}
+#home .bal-btns .go{height:calc(38px + var(--ex)*.04px);font-size:calc(13.5px + var(--ex)*.01px);padding:0 16px;flex:1;justify-content:center}
+#home .bal-btns .sh{width:calc(38px + var(--ex)*.04px);height:calc(38px + var(--ex)*.04px)}
+#home .welcome{margin-top:calc(8px + var(--ex)*.03px);padding:calc(10px + var(--ex)*.07px) 14px;container-type:inline-size;display:block}
 #home .welcome .em{display:none}
 #home .welcome h2{font-size:3.95cqw;white-space:nowrap;line-height:1.3}
 #home .welcome h2 .pill img{height:3.2cqw}
-#home .welcome p{font-size:3.2cqw;white-space:nowrap;margin-top:4px}
+#home .welcome p{font-size:3.2cqw;white-space:nowrap;margin-top:calc(4px + var(--ex)*.04px)}
 #home .atajos{margin-top:calc(8px + var(--ex)*.03px);padding-top:calc(10px + var(--ex)*.02px);padding-bottom:calc(8px + var(--ex)*.02px)}
 #home .at-head{margin-bottom:calc(8px + var(--ex)*.02px)}
 #home .sec-t{margin-top:calc(10px + var(--ex)*.03px);margin-bottom:6px}
