@@ -374,3 +374,11 @@ button.lnk{border:0;background:none;padding:0;font-family:inherit;align-self:fle
 .sec-t{margin:10px 4px 6px;font-size:17px}
 .mov{padding:0 16px}
 .mov .r{padding:7px 0;font-size:13.5px}.mov .r small{font-size:10.5px;margin-top:0}
+
+#home{--ex:0}
+#home .bal{margin-top:calc(8px + var(--ex)*.04px);padding-top:calc(10px + var(--ex)*.035px);padding-bottom:calc(10px + var(--ex)*.035px)}
+#home .welcome{margin-top:calc(8px + var(--ex)*.05px);padding-top:calc(9px + var(--ex)*.035px);padding-bottom:calc(9px + var(--ex)*.035px)}
+#home .atajos{margin-top:calc(8px + var(--ex)*.05px);padding-top:calc(10px + var(--ex)*.04px);padding-bottom:calc(8px + var(--ex)*.04px)}
+#home .at-head{margin-bottom:calc(8px + var(--ex)*.04px)}
+#home .sec-t{margin-top:calc(10px + var(--ex)*.06px);margin-bottom:calc(6px + var(--ex)*.04px)}
+#home .mov .r{padding-top:calc(7px + var(--ex)*.04px);padding-bottom:calc(7px + var(--ex)*.04px)}

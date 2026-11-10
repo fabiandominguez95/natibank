@@ -75,7 +75,22 @@
 
   /* ---------- home ---------- */
   function nextStep() { return st.done.indexOf(false); }
+  function fitHome() {
+    var sc = document.querySelector('.h-scroll'), nav = document.querySelector('.nav'), mov = document.querySelector('.mov');
+    if (!sc || !mov || !document.getElementById('home').classList.contains('active')) return;
+    var root = document.getElementById('home');
+    root.style.setProperty('--ex', '0');
+    var gap = nav.getBoundingClientRect().top - 12 - mov.getBoundingClientRect().bottom;
+    var ex = Math.max(0, Math.min(260, gap));
+    root.style.setProperty('--ex', ex.toFixed(1));
+    var gap2 = nav.getBoundingClientRect().top - 12 - mov.getBoundingClientRect().bottom;
+    var used = gap - gap2;
+    if (used > 1 && Math.abs(gap2) > 1) root.style.setProperty('--ex', Math.max(0, Math.min(400, ex + gap2 * ex / used)).toFixed(1));
+  }
+  window.addEventListener('resize', fitHome);
+
   function renderHome() {
+    setTimeout(fitHome, 30); setTimeout(fitHome, 400);
     var nxt = nextStep();
     $$('.sc').forEach(function (b, i) {
       b.classList.toggle('done', st.done[i]);
