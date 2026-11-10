@@ -65,6 +65,10 @@
       if (remote) return rpc('nb_admin_upsert', { p_pass: pass, p_name: name, p_plus: !!plus });
       return Promise.resolve(lupsert(name, { plus_one: !!plus }, !!plus));
     },
+    adminSet: function (pass, name, patch) {
+      if (remote) return rpc('nb_admin_set', { p_pass: pass, p_name: name, p_patch: patch });
+      return Promise.resolve(lupsert(name, patch, false));
+    },
     adminDelete: function (pass, name) {
       if (remote) return rpc('nb_admin_delete', { p_pass: pass, p_name: name });
       var all = lget(); delete all[name.toLowerCase()]; lset(all); return Promise.resolve(true);
