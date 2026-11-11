@@ -38,7 +38,7 @@ td{padding:9px 8px;border-top:1px solid #EEF1EF;vertical-align:middle}
   </div>
   <div class="card">
     <div class="row" style="justify-content:space-between;margin-bottom:10px"><h2 style="margin:0">Lista</h2><div class="row"><button class="l" id="copyAll">Copiar todos los links</button><button class="l" id="refresh">Actualizar</button></div></div>
-    <div style="overflow-x:auto"><table><thead><tr><th>Invitado</th><th>Respuesta</th><th>+1</th><th>Voluntario</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+    <div style="overflow-x:auto"><table><thead><tr><th>Invitado</th><th>Respuesta</th><th>+1</th><th>Voluntario</th><th>Regaló (Gs.)</th><th></th></tr></thead><tbody id="rows"></tbody><tfoot><tr><td colspan="4" style="text-align:right;font-weight:700">Total regalado</td><td colspan="2" id="giftTotal" style="font-weight:700;font-size:18px">0 Gs.</td></tr></tfoot></table></div>
   </div>
 </div>
 <script src="js/config.js"></script><script src="js/api.js"></script>
@@ -50,6 +50,8 @@ var data=[];
 function link(n){return base+'index.html?n='+encodeURIComponent(n)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function load(){return NBAPI.adminList(pass).then(function(d){data=d;render();$('#login').hidden=true;$('#main').hidden=false;sessionStorage.setItem('nb_admin',pass);$('#localWarn').hidden=NBAPI.remote})}
+  function fmt(v){return v?String(v).replace(/\B(?=(\d{3})+(?!\d))/g,'.'):''}
+  function sumGifts(){var t=0;document.querySelectorAll('input.gift').forEach(function(i){t+=parseInt(i.value.replace(/\D/g,''),10)||0});$('#giftTotal').textContent=fmt(t)||'0';$('#giftTotal').textContent+=' Gs.'}
 function render(){
   var yes=data.filter(function(g){return g.rsvp==='yes'}),no=data.filter(function(g){return g.rsvp==='no'}),none=data.filter(function(g){return !g.rsvp});
   var plus=yes.filter(function(g){return g.plus_one&&g.plus_one_rsvp==='yes'}).length;
@@ -60,8 +62,9 @@ function render(){
     var r=sel(g.name,'rsvp',[['','— sin responder'],['yes','Va'],['no','No va']],g.rsvp);
     var p=!g.plus_one?'<span class="sub" style="margin:0">—</span>':sel(g.name,'plus_one_rsvp',[['','+1 sin confirmar'],['yes','+1 viene'],['no','+1 no viene']],g.plus_one_rsvp)+(g.plus_one_rsvp==='yes'?'<input data-n="'+esc(g.name)+'" data-f="plus_one_name" value="'+esc(g.plus_one_name||'')+'" placeholder="Nombre del +1" style="margin-top:6px">':'');
     var v=sel(g.name,'role',[['','—'],['parrilla','🍕 Parrillere'],['globos','🎈 Globos'],['none','No']],g.role);
-    return '<tr><td><b>'+esc(g.name)+'</b></td><td>'+r+'</td><td>'+p+'</td><td>'+v+'</td><td style="white-space:nowrap"><button class="l" data-copy="'+esc(g.name)+'">Link</button> <button class="r" data-del="'+esc(g.name)+'">✕</button></td></tr>';
-  }).join('')||'<tr><td colspan="5" class="sub">Todavía no hay invitados.</td></tr>';
+    return '<tr><td><b>'+esc(g.name)+'</b></td><td>'+r+'</td><td>'+p+'</td><td>'+v+'</td><td><input class="gift" inputmode="numeric" data-n="'+esc(g.name)+'" data-f="gift" value="'+fmt(g.gift)+'" placeholder="0" style="width:120px;text-align:right"></td><td style="white-space:nowrap"><button class="l" data-copy="'+esc(g.name)+'">Link</button> <button class="r" data-del="'+esc(g.name)+'">✕</button></td></tr>';
+  }).join('')||'<tr><td colspan="6" class="sub">Todavía no hay invitados.</td></tr>';
+  sumGifts();
 }
 $('#go').onclick=function(){pass=$('#pass').value;load().catch(function(e){$('#lerr').textContent='Clave incorrecta o sin conexión'})};
 $('#pass').addEventListener('keydown',function(e){if(e.key==='Enter')$('#go').click()});
@@ -71,6 +74,7 @@ $('#add').onclick=function(){
   var jobs=lines.map(function(l){var plus=/\s*\+\s*1\s*$/.test(l);var n=l.replace(/\s*\+\s*1\s*$/,'').trim();return NBAPI.adminUpsert(pass,n,plus)});
   Promise.all(jobs).then(function(){$('#addmsg').textContent=jobs.length+' listo(s)';$('#bulk').value='';return load()}).catch(function(e){$('#addmsg').textContent='Error: '+e.message});
 };
+document.addEventListener('input',function(e){if(e.target.classList&&e.target.classList.contains('gift'))sumGifts()});
 document.addEventListener('change',function(e){
   var t=e.target,n=t.getAttribute&&t.getAttribute('data-n'),f=t.getAttribute&&t.getAttribute('data-f');
   if(!n||!f)return;
